@@ -1,15 +1,15 @@
 <template>
 
   <div >
-<Header></Header>
-    <router-viwe></router-viwe>
+    <Header></Header>
+    <router-view></router-view>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header/header.vue"
-import Footer from "./components/Footer/footer.vue"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 export default {
   name: '',
   components: {
