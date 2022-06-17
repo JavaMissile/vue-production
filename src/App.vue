@@ -2,7 +2,7 @@
 
   <div >
 <Header></Header>
-    sldkl
+    <router-viwe></router-viwe>
     <Footer></Footer>
   </div>
 </template>
