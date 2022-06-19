@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import TypeNav from "@/pages/Home/TypeNav"
+import TypeNav from "@/components/TypeNav"
 Vue.component(TypeNav.name, TypeNav);
-import router from "@/router"
+
+import router from "@/router";
+import store from '@/store';
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
