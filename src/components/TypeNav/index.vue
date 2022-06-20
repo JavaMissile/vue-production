@@ -114,8 +114,11 @@ export default {
         } else {
           query.category3id = category3id;
         }
-        location.query = query;
-        this.$router.push(location);
+        if (this.$route.params) {
+          location.params = this.$route.params;
+          location.query = query;
+          this.$router.push(location);
+        }
       }
     },
     enterShow() {
