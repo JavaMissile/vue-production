@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter);
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
-import Register from '@/pages/Register'
-import Search from '@/pages/Search'
+import Home from '@/views/Home'
+import Login from '@/views/Login'
+import Register from '@/views/Register'
+import Search from '@/views/Search'
 let originPush = VueRouter.prototype.push;
 let originReplace = VueRouter.prototype.replace;
 VueRouter.prototype.push = function (location, resolve, reject) {

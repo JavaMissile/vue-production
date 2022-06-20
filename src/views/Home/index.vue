@@ -12,12 +12,12 @@
 </template>
 
 <script>
-import ListContainer from "@/pages/Home/ListContainer";
-import Recommend from "@/pages/Home/Recommend";
-import Rank from "@/pages/Home/Rank";
-import Like from "@/pages/Home/Like";
-import Floor from "@/pages/Home/Floor";
-import Brand from "@/pages/Home/Brand";
+import ListContainer from "@/views/Home/ListContainer";
+import Recommend from "@/views/Home/Recommend";
+import Rank from "@/views/Home/Rank";
+import Like from "@/views/Home/Like";
+import Floor from "@/views/Home/Floor";
+import Brand from "@/views/Home/Brand";
 export default {
   name: "",
   components: {
