@@ -15,7 +15,7 @@ const actions = {
     async getSearchList({ commit }, params = {}) {
         let result = await reqGetSearchInfo(params);
         if (result.code == 200) {
-            commit('GETSEARCHLIST', result.data)
+            commit('GETSEARCHLIST', result.data);
         }
     }
 };
@@ -24,10 +24,10 @@ const getters = {
         return state.searchList.goodsList || [];
     },
     trademarkList(state) {
-        return state.searchList.trademarkList || [];
+        return state.searchList.trademarkList;
     },
     attrsList(state) {
-        return state.searchList.attrsList || [];
+        return state.searchList.attrsList;
     }
 };
 export default {
