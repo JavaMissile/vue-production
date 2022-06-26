@@ -4,6 +4,8 @@
 - 测试分支master
 - merge分支main
 
-1.结构规范，命名规范
-2.lang="less"
-3.文件路径
+- 结构规范，命名规范
+- lang="less"
+- 文件路径
+
+- flag传参问题（pointerevent）
