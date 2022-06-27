@@ -4,4 +4,6 @@ export const reqCategoryList = () => requests({ url: '/product/getBaseCategoryLi
 export const reqGetBannerList = () => mockRequests.get('/banner');
 export const reqGetFloorList = () => mockRequests.get('/floor');
 //post
-export const reqGetSearchInfo = (params) => requests({ url: "/list", method: "post", data: params })
+export const reqGetSearchInfo = (params) => requests({ url: "/list", method: "post", data: params });
+
+export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: 'get' })
