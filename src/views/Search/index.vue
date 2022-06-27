@@ -107,35 +107,7 @@
               </li>
             </ul>
           </div>
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
-            </div>
-          </div>
+          <Pagination :pageNo="26" :pageSize="3" :total="91" :continues="5" />
         </div>
       </div>
     </div>
@@ -233,8 +205,8 @@ export default {
     changeOrder(flag) {
       // console.log(flag);
       let originOrder = this.searchParams.order;
-      let originFlag = this.searchParams.order.split(":")[0];
-      let originSort = this.searchParams.order.split(":")[1];
+      let originFlag = originOrder.split(":")[0];
+      let originSort = originOrder.split(":")[1];
       let newOrder = "";
       if (flag == originFlag) {
         newOrder = `${originFlag}:${originSort == "desc" ? "asc" : "desc"}`;
