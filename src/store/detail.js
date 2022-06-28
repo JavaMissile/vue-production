@@ -1,4 +1,4 @@
-import { reqGoodsInfo } from "@/api"
+import { reqGoodsInfo, reqAddOrUpdateShopCart } from "@/api"
 
 const state = {
     goodInfo: {}
@@ -6,7 +6,7 @@ const state = {
 const mutations = {
     GETGOODINFO(state, goodInfo) {
         state.goodInfo = goodInfo;
-    }
+    },
 }
 const actions = {
     async getGoodInfo({ commit }, skuId) {
@@ -14,17 +14,25 @@ const actions = {
         if (result.code == 200) {
             commit("GETGOODINFO", result.data);
         }
+    },
+    async addOrUpdateShopCart({ commit }, { skuId, skuNum }) {
+        let result = await reqAddOrUpdateShopCart(skuId, skuNum);
+        if (result.code == 200) {
+            return "ok"
+        } else {
+            return Promise.reject(new Error('faile'));
+        }
     }
 }
 const getters = {
-    categoryView(state){
-        return state.goodInfo.categoryView||{};
+    categoryView(state) {
+        return state.goodInfo.categoryView || {};
     },
-    skuInfo(state){
-        return state.goodInfo.skuInfo||{};
+    skuInfo(state) {
+        return state.goodInfo.skuInfo || {};
     },
-    spuSaleAttrList(state){
-        return state.goodInfo.spuSaleAttrList||[];
+    spuSaleAttrList(state) {
+        return state.goodInfo.spuSaleAttrList || [];
     },
 }
 

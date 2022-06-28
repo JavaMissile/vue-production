@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import home from './home'
-import search from './search'
+import search from './search/search'
 import detail from './detail'
 Vue.use(Vuex);
 
