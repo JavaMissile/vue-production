@@ -4,12 +4,18 @@ import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Search from '@/views/Search'
 import AddCartSuccess from '@/views/AddCartSuccess'
+import ShopCart from '@/views/ShopCart'
 
 export default [
     {
         path: '/addcartsuccess',
-        name:"addcartsuccess",
+        name: "addcartsuccess",
         component: AddCartSuccess,
+        meta: { show: true },
+    },
+    {
+        path: '/shopcart',
+        component: ShopCart,
         meta: { show: true },
     },
     {
