@@ -21,6 +21,7 @@
               type="checkbox"
               name="chk_list"
               :checked="cart.isChecked == 1"
+              @change="updateChecked(cart, $event)"
             />
           </li>
           <li class="cart-list-con2">
@@ -57,7 +58,7 @@
             <span class="sum">{{ cart.skuNum * cart.skuPrice }}</span>
           </li>
           <li class="cart-list-con7">
-            <a href="#none" class="sindelet">删除</a>
+            <a class="sindelet" @click="deleteCartById(cart)">删除</a>
             <br />
             <a href="#none">移到收藏</a>
           </li>
@@ -70,7 +71,7 @@
         <span>全选</span>
       </div>
       <div class="option">
-        <a href="#none">删除选中的商品</a>
+        <a @click="deleteAllCheckedCart">删除选中的商品</a>
         <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a>
       </div>
@@ -90,6 +91,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import throttle from "lodash/throttle";
 export default {
   name: "ShopCart",
   mounted() {
@@ -99,7 +101,7 @@ export default {
     getDate() {
       this.$store.dispatch("getCartList");
     },
-    async handler(type, disNum, cart) {
+    handler: throttle(async function (type, disNum, cart) {
       switch (type) {
         case "add":
           disNum = 1;
@@ -122,8 +124,38 @@ export default {
           skuNum: disNum,
         });
         this.getDate();
-      } catch (error) {}
+      } catch (error) {
+        alert(error.message);
+      }
+    }, 500),
+    async deleteCartById(cart) {
+      try {
+        await this.$store.dispatch("deleteCartListBySkuId", cart.skuId);
+        this.getDate();
+      } catch (error) {
+        alert(error.message);
+      }
     },
+    async updateChecked(cart, event) {
+      try {
+        let isChecked = event.target.checked ? "1" : "0";
+        await this.$store.dispatch("updatedCheckedById", {
+          skuId: cart.skuId,
+          isChecked,
+        });
+        this.getDate();
+      } catch (error) {
+        alert(error.message);
+      }
+    },
+   async deleteAllCheckedCart(){
+      try {
+        await this.$store.dispatch("deleteAllCheckedCart");
+        this.getDate();
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   },
   computed: {
     ...mapGetters(["cartList"]),
