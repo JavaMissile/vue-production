@@ -12,3 +12,5 @@
 
 - 文件路径中不能带空格
 
+- Cannot read properties of undefined (reading 'forEach')报错：forEach前面没有可遍历的数组
+
