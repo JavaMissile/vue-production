@@ -5,8 +5,14 @@ import Register from '@/views/Register'
 import Search from '@/views/Search'
 import AddCartSuccess from '@/views/AddCartSuccess'
 import ShopCart from '@/views/ShopCart'
+import Trade from '@/views/Trade'
 
 export default [
+    {
+        path: '/trade',
+        component: Trade,
+        meta: { show: true },
+    },
     {
         path: '/addcartsuccess',
         name: "addcartsuccess",
