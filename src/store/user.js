@@ -1,8 +1,10 @@
-import { reqGetCode, reqUserRegister, reqUserLogin, reqUserInfo } from "@/api/index"
+import { reqGetCode, reqUserRegister, reqUserLogin, reqUserInfo, reqLogout } from "@/api/index";
+
+import { setToken, getToken, removeToken } from '@/utils/token';
 
 const state = {
     code: '',
-    token: '',
+    token: getToken(),
     userInfo: {},
 }
 const mutations = {
@@ -14,6 +16,11 @@ const mutations = {
     },
     GETUSERINFO(state, userInfo) {
         state.userInfo = userInfo;
+    },
+    CLEAR(state) {
+        state.token = '';
+        state.userInfo = {};
+        removeToken();
     }
 }
 const actions = {
@@ -38,6 +45,7 @@ const actions = {
         let result = await reqUserLogin(data);
         if (result.code == 200) {
             commit("USERLOGIN", result.data.token);
+            setToken(result.data.token);
             return 'ok'
         } else {
             return Promise.reject(new Error('faile'));
@@ -47,7 +55,18 @@ const actions = {
         let result = await reqUserInfo();
         if (result.code == 200) {
             commit("GETUSERINFO", result.data);
-
+            return 'ok'
+        } else {
+            return Promise.reject(new Error('faile'));
+        }
+    },
+    async userLogout({ commit }) {
+        let result = await reqLogout();
+        if (result.code == 200) {
+            commit("CLEAR");
+            return 'ok'
+        } else {
+            return Promise.reject(new Error('faile'));
         }
     }
 }
