@@ -41,11 +41,25 @@ export default [
         path: '/pay',
         component: Pay,
         meta: { show: true },
+        beforeEnter: (to, from, next) => {
+            if (from.path == "/trade") {
+                next();
+            } else {
+                next(false);
+            }
+        }
     },
     {
         path: '/trade',
         component: Trade,
         meta: { show: true },
+        beforeEnter: (to, from, next) => {
+            if (from.path == "/shopcart") {
+                next();
+            } else {
+                next(false);
+            }
+        }
     },
     {
         path: '/addcartsuccess',

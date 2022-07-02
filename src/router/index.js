@@ -47,7 +47,12 @@ router.beforeEach(async (to, from, next) => {
             }
         }
     } else {
-        next();
+        let toPath = to.path;
+        if (toPath.indexOf('/trade') != -1 || toPath.indexOf('/pay') != -1 || toPath.indexOf('/center') != -1) {
+            next('/login?redirect=' + toPath);
+        } else {
+            next();
+        }
     }
 });
 
