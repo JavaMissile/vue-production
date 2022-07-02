@@ -94,11 +94,14 @@
 </template>
 
 <script>
+import QRCode from "qrcode";
 export default {
   name: "Pay",
   data() {
     return {
       payInfo: {},
+      timer: null,
+      code: "",
     };
   },
   computed: {
@@ -116,15 +119,43 @@ export default {
         this.payInfo = result.data;
       }
     },
-    open() {
-      this.$alert("<strong>这是 <i>HTML</i> 片段</strong>", "HTML 片段", {
+    async open() {
+      let url = await QRCode.toDataURL(this.payInfo.codeUrl);
+      this.$alert(`<img src=${url} />`, "请你微信支付", {
         dangerouslyUseHTMLString: true,
         center: true,
-        sheoCancelButton: true,
+        showCancelButton: true,
         cancelButtonText: "支付遇见问题",
         confirmButtonText: "已支付成功",
         showClose: false,
+        beforeClose: (type, instance, done) => {
+          if (type == "cancel") {
+            alert("请联系管理员");
+            clearInterval(this.timer);
+            this.timer = null;
+            done();
+          } else {
+            // if (this.code == 200) {
+            clearInterval(this.timer);
+            this.timer = null;
+            done();
+            this.$router.push("/paysuccess");
+            //}
+          }
+        },
       });
+      if (!this.timer) {
+        this.timer = setInterval(async () => {
+          let result = await this.$API.reqPayStauts(this.orderId);
+          if (result.code == 200) {
+            clearInterval(this.timer);
+            this.timer = null;
+            this.code = result.code;
+            this.$msgbox.close();
+            this.$router.push("/paysuccess");
+          }
+        }, 1000);
+      }
     },
   },
 };

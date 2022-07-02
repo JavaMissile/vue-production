@@ -14,3 +14,5 @@
 
 - Cannot read properties of undefined (reading 'forEach')报错：forEach前面没有可遍历的数组
 
+- 确认逻辑没有问题，确认第三方组件没有兼容问题（element-ui),考虑环境是否被污染
+
