@@ -16,3 +16,5 @@
 
 - 确认逻辑没有问题，确认第三方组件没有兼容问题（element-ui),考虑环境是否被污染
 
+- 出现"export 'createVNode' was not found in 'vue'为版本问题
+

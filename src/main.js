@@ -11,6 +11,9 @@ import Pagination from "@/components/Pagination"
 import { Button, MessageBox } from 'element-ui';
 
 
+
+
+
 Vue.component(TypeNav.name, TypeNav);
 Vue.component(Carousel.name, Carousel);
 Vue.component(Pagination.name, Pagination);
@@ -23,6 +26,20 @@ import '@/mock/mockServe';
 import "swiper/css/swiper.css";
 import * as API from '@/api';
 
+import VueLazyload from 'vue-lazyload'
+import atm from '@/assets/1.gif'
+
+Vue.use(VueLazyload, {
+  loading: atm,
+});
+
+
+import myPlugins from './plugins/myPlugins';
+Vue.use(myPlugins, {
+  name: 'upper'
+});
+
+import "@/plugins/validate"
 
 new Vue({
   render: h => h(App),

@@ -1,21 +1,23 @@
 import Detail from '@/views/Detail'
-import Home from '@/views/Home'
+// import Home from '@/views/Home'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
-import Search from '@/views/Search'
+// import Search from '@/views/Search'
 import AddCartSuccess from '@/views/AddCartSuccess'
 import ShopCart from '@/views/ShopCart'
 import Trade from '@/views/Trade'
 import Pay from '@/views/Pay'
 import PaySuccess from '@/views/PaySuccess'
-import Center from '@/views/Center'
+// import Center from '@/views/Center'
 import GroupOrder from '@/views/Center/groupOrder'
 import MyOrder from '@/views/Center/myOrder'
+
+
 
 export default [
     {
         path: '/center',
-        component: Center,
+        component: () => import("@/views/Center"),
         meta: { show: true },
         children: [
             {
@@ -79,7 +81,7 @@ export default [
     },
     {
         path: '/home',
-        component: Home,
+        component: () => import("@/views/Home"),
         meta: { show: true },
     },
     {
@@ -94,7 +96,7 @@ export default [
     },
     {
         path: '/search/:keyword?',
-        component: Search,
+        component: () => import("@/views/Search"),
         meta: { show: true },
         name: "search",
         props: ($route) => ({
